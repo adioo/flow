@@ -1,6 +1,16 @@
 var devConfig = {
     flow: {
-        miid1: {}
+        dom: {
+            '#selector': {
+                miid1: []
+            }
+        },
+        init: {
+            miid1: "methodName"
+        },
+        miids: {
+            miid1: {}
+        }
     },
     miids: {
         miid1: {},
