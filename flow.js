@@ -55,16 +55,28 @@ M.custom({
 //      force the client modules to this structure..
 
 // private methods
-function privateMethod () {}
-function merger () {}
-function repeat () {}
-function binds () {}
-function states () {}
-function events () {}
+function privateMethod () {
+    var self = this;
+        
+    // emit events from code
+    self.emit('eventName', params);
+}
 
 // public methods
 var publicMethods = {
-    functionName: function () {}
+    functionName: function () {
+        var self = this;
+        
+        // listen from code
+        // TODO can this be done with a event-flow config?
+        //      it can, but sure there are some cases where
+        //      listen from inside the code is required.
+        self.on('eventName', handlerFunction);
+        self.once('eventName', handlerFunction);
+        
+        // emit events from code
+        self.emit('eventName', params);
+    }
 };
 
 // module init
@@ -79,4 +91,10 @@ module.exports = function (config) {
     
     // TODO how to execute events/methods on init?
     //      with config..?
+    //      there could be an config to control the
+    //      interal event flow and the "flow" module
+    //      sets up the event structure
+    
+    // emit events from code
+    self.emit('ready');
 };
