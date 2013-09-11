@@ -1,9 +1,11 @@
+// ------------------------------------------ event flow
 var appDescriptor = {
     // configure event chaining
     events: {
         // observer name: miid, global
         obs: {
             // listen to eventName
+            // TODO what about "once" (fire an event only once) ?
             eventName: [{
                 // event action
                 emit: {
@@ -20,7 +22,7 @@ var appDescriptor = {
                     }]
                 },
                 
-                // TODO when events had an return value, executing
+                // TODO when events had a return value, executing
                 //      a function directly could be obsolete
                 method: {
                     module: "miid|global",
@@ -34,62 +36,47 @@ var appDescriptor = {
     }
 };
 
-// module methods
-var module = {exports: {}};
-module.exports = function (config) {
-    var self = this;
-    
-    self.on('eventName', function () {});
-};
+// ------------------------------------------ custom methods
+M.custom('myCustomMethodA', function () {});
+M.custom('myCustomMethodB', function () {});
+M.custom('myCustomMethodC', function () {});
 
-// custom methods
+// or... (I like this more)
+M.custom({
+    myCustomMethodA: function () {},
+    myCustomMethodB: function () {},
+    myCustomMethodC: function () {}
+});
 
-// what was this??!!
-var devConfig = {
-    flow: {
-        dom: {
-            '#selector': {
-                miid1: []
-            }
-        },
-        init: {
-            miid1: "methodName"
-        },
-        miids: {
-            miid1: {}
-        }
-    },
-    miids: {
-        miid1: {},
-        miid2: {},
-        miid3: {}
-    }
-};
 
+// ------------------------------------------ module structure
+// TODO gabriel mentioned that the functions in the module.exports
+//      object could be used to setup public methods. but this would
+//      force the client modules to this structure..
+
+// private methods
+function privateMethod () {}
 function merger () {}
 function repeat () {}
 function binds () {}
 function states () {}
 function events () {}
 
-// module structure
-
-// private methods
-function privateMethod () {}
-
 // public methods
-var methods = {
+var publicMethods = {
     functionName: function () {}
 };
 
 // module init
-function init (config) {
+module.exports = function (config) {
     var self = this;
+    self.config = config;
     
     // listen to public methods
-    for (var name in methods) {
+    for (var name in publicMethods) {
         self.on(name, methods[name]);
     }
-}
-
-module.exports = init;
+    
+    // TODO how to execute events/methods on init?
+    //      with config..?
+};
