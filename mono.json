@@ -3,6 +3,6 @@
     "owner": "adioo",
     "name": "flow",
     "dependencies": [
-        "/fow.js"
+        "/flow.js"
     ]
 }
