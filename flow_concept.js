@@ -1,5 +1,5 @@
 // ------------------------------------------ event flow
-var appDescriptor = {
+var eventFlow = {
     // configure event chaining
     events: {
         // observer name: miid, global
@@ -8,11 +8,11 @@ var appDescriptor = {
             // TODO what about "once" (fire an event only once) ?
             eventName: [{
                 // event action
-                emit: {
+                emit: [{
                     // emit eventName
                     eventName: [{
                         // emit on observer
-                        obs: "miid|global",
+                        obs: "miid",
                         // parameter object config
                         // this is optional
                         keys: {
@@ -20,28 +20,23 @@ var appDescriptor = {
                             keyName: 1 // 0 | 1
                         }
                     }]
-                },
+                }],
                 
                 // TODO when events had a return value, executing
                 //      a function directly could be obsolete
-                method: {
-                    module: "miid|global",
+                method: [{
+                    module: "miid|custom",
                     name: "functionName"
-                },
+                }],
                 
                 // activate/deactivate states
-                states: {}
+                states: [{}]
             }]
         }
     }
 };
 
 // ------------------------------------------ custom methods
-M.custom('myCustomMethodA', function () {});
-M.custom('myCustomMethodB', function () {});
-M.custom('myCustomMethodC', function () {});
-
-// or... (I like this more)
 M.custom({
     myCustomMethodA: function () {},
     myCustomMethodB: function () {},
@@ -54,13 +49,13 @@ var modConfig = {
     html: '',
     // modules css files
     css: [''],
+    // module scripts
+    scripts: [''],
     // load other modules
-    modules: {
-        miid: 'selector'
-    },
+    modules: {miid: 'selector'},
     // plug custom handlers
     handlers: {
-        
+        renderItem: 'myCustomMehtodA'
     }
 };
 
@@ -72,7 +67,7 @@ var modConfig = {
 // private methods
 function privateMethod () {
     var self = this;
-        
+    
     // emit events from code
     self.emit('eventName', params);
 }
@@ -97,12 +92,15 @@ var publicMethods = {
 // module init
 module.exports = function (config) {
     var self = this;
+    var flow = Flow(self);
+    
     self.config = config;
     
     // listen to public methods
-    for (var name in publicMethods) {
-        self.on(name, methods[name]);
-    }
+    flow.onFn(publicMethods);
+    
+    // setup interal event flow
+    flow.setup(eventFlow);
     
     // TODO how to execute events/methods on init?
     //      with config..?
