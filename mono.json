@@ -1,0 +1,8 @@
+{
+    "source": "github",
+    "owner": "adioo",
+    "name": "flow",
+    "dependencies": [
+        "/fow.js"
+    ]
+}
