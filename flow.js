@@ -1,3 +1,4 @@
+M.wrap('github/adioo/flow/vdev/flow.js', function (require, module, exports) {
 // setup event flow
 function setup (eventFlow) {
     var self = this;
@@ -23,3 +24,5 @@ var Flow = {
 module.exports = function (self) {
     return Object.extend(Flow, self);
 };
+
+return module; });
