@@ -2,6 +2,7 @@ M.wrap('github/adioo/flow/vdev/flow.js', function (require, module, exports) {
 // setup event flow
 function setup (eventFlow) {
     var self = this;
+    console.log(eventFlow);
 }
 
 // listen to methods
@@ -15,14 +16,18 @@ function methodToEvent (methods) {
     }
 }
 
-var Flow = {
-    setup: function () {},
-    onFn: methodToEvent
-};
-
 // constructor
-module.exports = function (self) {
-    return Object.extend(Flow, self);
+module.exports = function (module, methods, eventFlow) {
+    
+    // listen to methods
+    if (methods) {
+        methodToEvent.call(module, methods);
+    }
+    
+    // setup internal event flow
+    if (eventFlow) {
+        setup.call(module, eventFlow);
+    }
 };
 
 return module; });
