@@ -3,7 +3,7 @@ var eventFlow = {
     // configure event chaining
     events: {
         // observer name: miid, global
-        obs: {
+        miid: {
             // listen to eventName
             // TODO what about "once" (fire an event only once) ?
             eventName: [{
@@ -12,7 +12,7 @@ var eventFlow = {
                     // emit eventName
                     eventName: [{
                         // emit on observer
-                        obs: "miid",
+                        miid: "miid",
                         // parameter object config
                         // this is optional
                         keys: {
@@ -55,7 +55,7 @@ var modConfig = {
     modules: {miid: 'selector'},
     // plug custom handlers
     handlers: {
-        renderItem: 'myCustomMehtodA'
+        customHandler: 'myCustomMehtodA'
     }
 };
 

@@ -1,6 +1,6 @@
 M.wrap('github/adioo/flow/vdev/flow.js', function (require, module, exports) {
 // setup event flow
-function setup (eventFlow) {
+function setupEventFlow (eventFlow) {
     var self = this;
     console.log(eventFlow);
 }
@@ -26,7 +26,7 @@ module.exports = function (module, methods, eventFlow) {
     
     // setup internal event flow
     if (eventFlow) {
-        setup.call(module, eventFlow);
+        setupEventFlow.call(module, eventFlow);
     }
 };
 
