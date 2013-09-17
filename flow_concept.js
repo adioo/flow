@@ -36,34 +36,6 @@ var eventFlow = {
     }
 };
 
-// ------------------------------------------ custom methods
-M.custom({
-    myCustomMethodA: function () {},
-    myCustomMethodB: function () {},
-    myCustomMethodC: function () {}
-});
-
-// ------------------------------------------ module config
-var modConfig = {
-    // the module html
-    html: '',
-    // modules css files
-    css: [''],
-    // module scripts
-    scripts: [''],
-    // load other modules
-    modules: {miid: 'selector'},
-    // plug custom handlers
-    custom: {
-        customHandler: 'myCustomMehtodA'
-    }
-};
-
-// ------------------------------------------ module structure
-// TODO gabriel mentioned that the functions in the module.exports
-//      object could be used to setup public methods. but this would
-//      force the client modules to this structure..
-
 // private methods
 function privateMethod () {
     var self = this;
@@ -96,11 +68,8 @@ module.exports = function (config) {
     
     self.config = config;
     
-    // listen to public methods
-    flow.onFn(publicMethods);
-    
-    // setup interal event flow
-    flow.setup(eventFlow);
+    // init flow
+    Flow(self, publicMethods, eventFlow);
     
     // TODO how to execute events/methods on init?
     //      with config..?
