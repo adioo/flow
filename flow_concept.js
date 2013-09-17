@@ -54,7 +54,7 @@ var modConfig = {
     // load other modules
     modules: {miid: 'selector'},
     // plug custom handlers
-    handlers: {
+    custom: {
         customHandler: 'myCustomMehtodA'
     }
 };
