@@ -3,10 +3,13 @@ M.wrap('github/adioo/flow/vdev/flow.js', function (require, module, exports) {
 // TODO handle arguments
 function listenHandler (emit) {
     
+    var args = [emit];
+    
     return function () {
         var self = this;
         
-        self.emit(emit);
+        // emit the chained event and pass params
+        self.emit.apply(self, args.concat(Array.prototype.slice.call(arguments, 0)));
     };
 }
 
