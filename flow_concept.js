@@ -1,37 +1,29 @@
 // ------------------------------------------ event flow
-var eventFlow = {
-    // configure event chaining
-    events: {
-        // observer name: miid, global
-        miid: {
-            // listen to eventName
-            // TODO what about "once" (fire an event only once) ?
-            eventName: [{
-                // event action
-                emit: [{
-                    // emit eventName
-                    eventName: [{
-                        // emit on observer
-                        miid: "miid",
-                        // parameter object config
-                        // this is optional
-                        keys: {
-                            // pass this key to the next event
-                            keyName: 1 // 0 | 1
-                        }
-                    }]
-                }],
-                
-                // TODO when events had a return value, executing
-                //      a function directly could be obsolete
-                method: [{
-                    module: "miid|custom",
-                    name: "functionName"
-                }],
-                
-                // activate/deactivate states
-                states: [{}]
-            }]
+// configure event chaining
+var internalEventFlow = {
+    // listen to eventName
+    // TODO what about "once"?
+    ready: {
+        on: [
+            "methodB"
+            //["eventY", {keyA: 1, keyB: 1}]
+        ],
+        once: ["testFlow"]
+    }
+};
+
+// configure event chaining
+var externalEventFlow = {
+    // observer name: miid, global
+    index: {
+        // listen to eventName
+        // TODO what about "once"?
+        ready: {
+            on: [
+                "methodB"
+                //["eventY", {keyA: 1, keyB: 1}]
+            ],
+            once: ["testFlow"]
         }
     }
 };
