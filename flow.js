@@ -1,30 +1,31 @@
-M.wrap('github/adioo/flow/vdev/flow.js', function (require, module, exports) {
-
 // TODO handle arguments
 function listenHandler (emit) {
     
-    var args = [emit];
+    var args = [emit.n];
     
     return function () {
         var self = this;
         
+        // convert arguments to array
+        var arguments_array = Array.prototype.slice.call(arguments, 0);
+        
+        if (emit.c && M.custom(emit.c)) {
+            arguments_array = M.custom(emit.c).call(self, arguments_array);
+        }
+        
         // emit the chained event and pass params
-        self.emit.apply(self, args.concat(Array.prototype.slice.call(arguments, 0)));
+        self.emit.apply(self, args.concat(arguments_array));
     };
 }
 
 function chain (event, obs, emit, i) {
     var self = this;
     
-    if (emit.on) {
-        for (i = 0; i < emit.on.length; ++i) {
-            self.on(event, obs, listenHandler(emit.on[i]));
-        }
-    }
-    
-    if (emit.once) {
-        for (i = 0; i < emit.once.length; ++i) {
-            self.once(event, obs, listenHandler(emit.once[i]));
+    for (i = 0; i < emit.length; ++i) {
+        if (typeof emit[i] === 'string' || !emit[i][1]) {
+            self.on(event, obs, listenHandler(emit[i]));
+        } else {
+            self.once(event, obs, listenHandler(emit[i]));
         }
     }
 } 
@@ -84,5 +85,3 @@ module.exports = function (module, methods, internalEventFlow, externalEventFlow
         setupExternalEventFlow.call(module, externalEventFlow);
     }
 };
-
-return module; });
