@@ -1,4 +1,4 @@
-M.wrap('github/adioo/flow/vdev/flow.js', function (require, module, exports) {
+M.wrap('github/adioo/flow/v0.1.0/flow.js', function (require, module, exports) {
 // TODO handle arguments
 function listenHandler (emit) {
     
