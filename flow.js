@@ -1,3 +1,4 @@
+M.wrap('github/adioo/flow/vdev/flow.js', function (require, module, exports) {
 // TODO handle arguments
 function listenHandler (emit) {
     
@@ -22,7 +23,12 @@ function chain (event, obs, emit, i) {
     var self = this;
     
     for (i = 0; i < emit.length; ++i) {
-        if (typeof emit[i] === 'string' || !emit[i][1]) {
+        
+        if (typeof emit[i] === 'string') {
+            emit[i] = {n: emit[i]};
+        }
+        
+        if (!emit[i][1]) {
             self.on(event, obs, listenHandler(emit[i]));
         } else {
             self.once(event, obs, listenHandler(emit[i]));
@@ -85,3 +91,5 @@ module.exports = function (module, methods, internalEventFlow, externalEventFlow
         setupExternalEventFlow.call(module, externalEventFlow);
     }
 };
+
+return module; });
