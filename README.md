@@ -6,6 +6,8 @@ Event chaining.
 ```js
 var Flow = require('github/adioo/flow');
 
+// this methods are registered as events
+// ex. self.emit('myMethodA');
 var publicMethods = {
     myMethodA: function () {},
     myMethodN: function () {}
