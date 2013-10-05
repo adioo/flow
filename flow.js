@@ -4,6 +4,11 @@ function listenHandler (emit) {
     
     var args = [emit.n];
     
+    // add static arguments
+    if (emit.a) {
+        args.concat(emit.a);
+    }
+    
     return function () {
         var self = this;
         

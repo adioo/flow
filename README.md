@@ -22,7 +22,9 @@ var interalEventFlow = {
             // arguments handler function
             c: 'myCustomArgumentsHandler',
             // once true/false
-            1: true
+            1: true,
+            // static arguments
+            a: ['staticValue']
         },
         
         // emit event name
@@ -41,7 +43,9 @@ var exteralEventFlow = {
                 // arguments handler function
                 c: 'myCustomArgumentsHandler',
                 // once true/false
-                1: true
+                1: true,
+                // static arguments
+                a: ['staticValue']
             },
             
             // emit event name
