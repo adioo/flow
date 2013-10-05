@@ -1,6 +1,7 @@
 M.wrap('github/adioo/flow/v0.1.0/flow.js', function (require, module, exports) {
-// TODO handle arguments
+// handle arguments
 function listenHandler (emit) {
+    var self =  this;
     
     var args = [emit.n];
     
@@ -10,7 +11,6 @@ function listenHandler (emit) {
     }
     
     return function () {
-        var self = this;
         
         // convert arguments to array
         var arguments_array = Array.prototype.slice.call(arguments, 0);
@@ -34,9 +34,9 @@ function chain (event, obs, emit, i) {
         }
         
         if (!emit[i][1]) {
-            self.on(event, obs, listenHandler(emit[i]));
+            self.on(event, obs, listenHandler.call(self, emit[i]));
         } else {
-            self.once(event, obs, listenHandler(emit[i]));
+            self.once(event, obs, listenHandler.call(self, emit[i]));
         }
     }
 } 
@@ -70,7 +70,6 @@ function setupExternalEventFlow (eventFlow) {
 // listen to methods
 function methodToEvent (methods) {
     var self = this;
-    
     for (var event in methods) {
         if (typeof methods[event] === 'function') {
             self.on(event, methods[event]);
