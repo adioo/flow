@@ -72,22 +72,18 @@ function methodToEvent (methods) {
     var self = this;
     for (var event in methods) {
         if (typeof methods[event] === 'function') {
+            
             self.on(event, methods[event]);
         }
     }
 }
 
 // constructor
-module.exports = function (module, methods, internalEventFlow, externalEventFlow) {
+module.exports = function (module, methods, externalEventFlow) {
     
     // listen to methods
     if (methods) {
         methodToEvent.call(module, methods);
-    }
-    
-    // setup internal event flow
-    if (internalEventFlow) {
-        setupInternalEventFlow.call(module, internalEventFlow);
     }
     
     // setup external event flow
