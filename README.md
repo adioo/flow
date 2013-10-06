@@ -13,26 +13,7 @@ var publicMethods = {
     myMethodN: function () {}
 };
 
-var interalEventFlow = {
-    // listen event name
-    listenEventName: [
-        {   
-            // emit event name
-            n: 'emitEventNameA',
-            // arguments handler function
-            c: 'myCustomArgumentsHandler',
-            // once true/false
-            1: true,
-            // static arguments
-            a: ['staticValue']
-        },
-        
-        // emit event name
-        'myMethodN'
-    ]
-};
-
-var exteralEventFlow = {
+var eventFlow = {
     //observer name or miid
     myModule: {
         // listen event name
@@ -55,7 +36,7 @@ var exteralEventFlow = {
 };
 
 // init flow
-Flow(this, publicMethods, internalEventFlow, externalEventFlow);
+Flow(this, publicMethods, eventFlow);
 ```
 
 ####License
