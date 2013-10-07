@@ -79,16 +79,16 @@ function methodToEvent (methods) {
 }
 
 // constructor
-module.exports = function (module, methods, externalEventFlow) {
+module.exports = function (module, methods, eventFlow) {
     
     // listen to methods
     if (methods) {
         methodToEvent.call(module, methods);
     }
     
-    // setup external event flow
-    if (externalEventFlow) {
-        setupExternalEventFlow.call(module, externalEventFlow);
+    // setup event flow
+    if (eventFlow) {
+        setupExternalEventFlow.call(module, eventFlow);
     }
 };
 
