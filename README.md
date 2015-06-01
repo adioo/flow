@@ -39,6 +39,14 @@ var eventFlow = {
 Flow(this, publicMethods, eventFlow);
 ```
 
+#### Changelog
+
+##### v0.2.0
+ - transferred the module to the new jxMono organization
+
+##### v0.1.0
+ - initial release
+
 ####License
 
 "THE BEER-WARE LICENSE" (Revision 42):
