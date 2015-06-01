@@ -1,6 +1,6 @@
 {
     "source": "github",
-    "owner": "adioo",
+    "owner": "jxmono",
     "name": "flow",
     "dependencies": [
         "/flow.js"
