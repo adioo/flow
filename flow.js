@@ -1,4 +1,3 @@
-M.wrap('github/adioo/flow/v0.1.0/flow.js', function (require, module, exports) {
 // handle arguments
 function listenHandler (emit) {
     var self =  this;
@@ -91,5 +90,3 @@ module.exports = function (module, methods, eventFlow) {
         setupExternalEventFlow.call(module, eventFlow);
     }
 };
-
-return module; });
