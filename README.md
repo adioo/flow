@@ -4,7 +4,7 @@ Event chaining.
 
 ####Usage
 ```js
-var Flow = require('github/adioo/flow');
+var Flow = require('github/jxmono/flow');
 
 // this methods are registered as events
 // ex. self.emit('myMethodA');
@@ -40,6 +40,9 @@ Flow(this, publicMethods, eventFlow);
 ```
 
 #### Changelog
+
+##### dev
+ - Updated the owner of the module in the README.md code snippet.
 
 ##### v0.2.0
  - transferred the module to the new jxMono organization
